@@ -12,7 +12,7 @@ const index = () => {
         <div className='center-section' id='cta'>
         <img src={Logo} alt="" className='w-30' />
         <h1 className='text-5xl font-bold'>HabitHero</h1>
-        <p className=''>Designed to help you become the best you</p>
+        <p className='text-xl'>Create atomic habits with science</p>
         <div className='center-section horizonatal-button-group'>
         <DarkButton text={"Get Started"}/>
         <OutlinedButton text={"Access As Guest"} />
