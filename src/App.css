@@ -16,12 +16,12 @@
 
 #cta{
     /* border: 5px solid black; */
-    min-height: 30vh;
+    min-height: 75vh;
     justify-content: space-around;
 }
 
 .horizonatal-button-group{
     width: 100%;
     justify-content: space-around;
-    height: 15vh;
+    height: 17vh;
 }
