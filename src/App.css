@@ -7,16 +7,19 @@
     justify-content: center;
     align-items: center;
     /* border: 5px solid black; */
+    width: 100%;
+
 }
 
 .page{
     min-height: 100vh;
-    /* border: 5px solid black; */
+    border: 5px solid black;
+    width: 100%;
 }
 
 #cta{
     /* border: 5px solid black; */
-    min-height: 70vh;
+    min-height: 76vh;
     justify-content: space-around;
 }
 
