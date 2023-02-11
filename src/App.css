@@ -1,1 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+.center-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 5px solid black; */
+}
+
+.page{
+    min-height: 100vh;
+    /* border: 5px solid black; */
+}
+
+#cta{
+    /* border: 5px solid black; */
+    min-height: 30vh;
+    justify-content: space-around;
+}
+
+.horizonatal-button-group{
+    width: 100%;
+    justify-content: space-around;
+    height: 15vh;
+}
