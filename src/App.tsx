@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./pages/Dashboard";
+import AddHabit from "./pages/Habits/AddHabit";
 import WithNav from "./pages/HeaderFlag/WithNav";
 import WithoutNav from "./pages/HeaderFlag/WithoutNav";
 import Home from "./pages/Home";
