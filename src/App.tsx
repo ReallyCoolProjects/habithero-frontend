@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import WithNav from "./pages/HeaderFlag/WithNav";
 import WithoutNav from "./pages/HeaderFlag/WithoutNav";
 import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
             <Route path="/" element={<Home />} />
           </Route>
           <Route element={<WithNav />}>
-    <Route path='/dashboard' element={<Dashboard/>} />
-    </Route>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

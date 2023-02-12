@@ -64,6 +64,13 @@ section{
     overflow-x: hidden;
 }
 
+#profile-view{
+    /* border: 5px solid black; */
+    grid-auto-rows: minmax(2rem,auto);
+    grid-template-rows: 8rem 20rem ;
+    gap: 20px;
+}
+
 select{
     background-color: var(--main-background);
 }
