@@ -58,5 +58,7 @@ section{
 
 #dashboard{
     grid-auto-rows: minmax(2rem,auto);
-    grid-template-rows: 1rem 4rem 12rem 1rem ; /* change the height of each row */
+    grid-template-rows: 1rem 4rem 12rem 5rem 1rem ; /* change the height of each row */
+    /* height: 200vh; */
+    overflow-x: hidden;
 }

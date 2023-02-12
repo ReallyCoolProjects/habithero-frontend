@@ -59,6 +59,19 @@ const Dashboard = () => {
         <img src={greetingImg} alt="boy-reading" className="h-28 w-28" />
       </div>
 
+        {/**mood question */}
+    <div className="">
+        <p className="text-center text-lg">How are you feeling today?</p>
+        <div className="flex justify-around mt-2">
+        <i className="fa-regular fa-face-smile text-5xl"></i>
+        <i className="fa-regular fa-face-smile-beam text-5xl"></i>
+        <i className="fa-regular fa-face-meh text-5xl"></i>
+        <i className="fa-regular fa-face-sad-cry text-5xl"></i>
+        <i className="fa-regular fa-face-frown text-5xl"></i>
+        </div>
+    </div>
+
+        {/**habits table */}
       <table className="borde">{habits}</table>
     </section>
   );
