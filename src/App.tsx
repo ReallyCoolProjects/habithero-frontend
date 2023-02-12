@@ -16,6 +16,7 @@ function App() {
           </Route>
           <Route element={<WithNav />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
         </Routes>
       </BrowserRouter>
