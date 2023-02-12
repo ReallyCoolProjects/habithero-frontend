@@ -4,7 +4,7 @@ import DashboardIconLight from "../../assets/icons/dashboard-icon.png";
 const Navbar = () => {
   return (
     <nav className="center-section flex-row justify-around">
-      <Link to={`/`}>
+      <Link to={`/dashboard`}>
         <span className="flex flex-col justify-center items-center">
           <span className="material-symbols-outlined">dashboard</span>
         <span>Dashboard</span> 
