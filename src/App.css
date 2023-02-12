@@ -4,12 +4,15 @@
     --main-color: #1d1e20;
 }
 
+
 body{
     background-color: #e6e7e9;
+    
 }
 
 nav{
     /* background-color: #333; */
+    background-color: #e6e7e9;
     overflow: hidden;
     position: fixed;
     bottom: 0;
@@ -51,4 +54,9 @@ section{
     width: 100%;
     justify-content: space-around;
     height: 17vh;
+}
+
+#dashboard{
+    grid-auto-rows: minmax(2rem,auto);
+    grid-template-rows: 1rem 4rem 12rem 1rem ; /* change the height of each row */
 }
