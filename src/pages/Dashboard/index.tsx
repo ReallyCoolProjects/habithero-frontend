@@ -27,11 +27,11 @@ const Dashboard = () => {
     .fill(1)
     .map((el, i) => {
       return (
-        <tr className="flex capitalize justify-between border-b border-[#b7b8b7] p-2">
+        <tr className="flex capitalize justify-between text-xl border-b border-[#b7b8b7] p-2">
           <span>go for a walk</span>
-          <div className="flex justify-between w-[8rem]">
-            <span>done</span>
-            <span>not done</span>
+          <div className="flex justify-between w-[5rem]">
+            <span className="material-symbols-outlined">done</span>
+            <span className="material-symbols-outlined">close</span>
           </div>
         </tr>
       );
@@ -45,7 +45,7 @@ const Dashboard = () => {
       {/**month selector */}
       <div className="text-2xl flex justify-between">
         <span>January</span>
-        <span>add</span>
+        <span className="material-symbols-outlined text-3xl">add</span>
       </div>
 
       {/**calendar */}
@@ -59,19 +59,26 @@ const Dashboard = () => {
         <img src={greetingImg} alt="boy-reading" className="h-28 w-28" />
       </div>
 
-        {/**mood question */}
-    <div className="">
+      {/**mood question */}
+      <div className="">
         <p className="text-center text-lg">How are you feeling today?</p>
         <div className="flex justify-around mt-2">
-        <i className="fa-regular fa-face-smile text-5xl"></i>
+          {/* <i className="fa-regular fa-face-smile text-5xl"></i>
         <i className="fa-regular fa-face-smile-beam text-5xl"></i>
         <i className="fa-regular fa-face-meh text-5xl"></i>
         <i className="fa-regular fa-face-sad-cry text-5xl"></i>
-        <i className="fa-regular fa-face-frown text-5xl"></i>
+        <i className="fa-regular fa-face-frown text-5xl"></i> */}
+          <span className="material-symbols-outlined text-5xl">mood</span>
+          <span className="material-symbols-outlined text-5xl">
+            sentiment_neutral
+          </span>
+          <span className="material-symbols-outlined text-5xl">
+            sentiment_dissatisfied
+          </span>
         </div>
-    </div>
+      </div>
 
-        {/**habits table */}
+      {/**habits table */}
       <table className="borde">{habits}</table>
     </section>
   );
