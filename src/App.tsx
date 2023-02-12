@@ -16,7 +16,6 @@ function App() {
           </Route>
           <Route element={<WithNav />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/add" element={<AddHabit />} />
           </Route>
         </Routes>
       </BrowserRouter>
