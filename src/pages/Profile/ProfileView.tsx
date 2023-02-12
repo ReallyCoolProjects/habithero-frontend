@@ -29,6 +29,14 @@ const ProfileView = () => {
                 <OutlinedButton text="Cancel" />
             </div>
         </form>
+
+    </div>
+  );
+};
+
+export default ProfileView;
+
+
       {/* <div className="mt-4">
         <div>
           <div className="flex flex-col">
@@ -38,8 +46,3 @@ const ProfileView = () => {
           <span className="material-symbols-outlined">edit</span>
         </div>
       </div> */}
-    </div>
-  );
-};
-
-export default ProfileView;
