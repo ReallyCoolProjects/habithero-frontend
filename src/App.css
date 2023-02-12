@@ -2,6 +2,7 @@
 
 :root{
     --main-color: #1d1e20;
+    --main-background: #e6e7e9;
 }
 
 
@@ -61,4 +62,8 @@ section{
     grid-template-rows: 1rem 4rem 12rem 5rem 1rem ; /* change the height of each row */
     /* height: 200vh; */
     overflow-x: hidden;
+}
+
+select{
+    background-color: var(--main-background);
 }

@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Dashboard = () => {
   //${i==0? "bg-black" : ""}
   const greetingImg =
@@ -44,7 +45,9 @@ const Dashboard = () => {
     >
       {/**month selector */}
       <div className="text-2xl flex justify-between">
-        <span>January</span>
+        <select className="w-[1/2] h-14 ">
+            <option selected value="a">January</option>
+        </select>
         <span className="material-symbols-outlined text-3xl">add</span>
       </div>
 
@@ -63,11 +66,7 @@ const Dashboard = () => {
       <div className="">
         <p className="text-center text-lg">How are you feeling today?</p>
         <div className="flex justify-around mt-2">
-          {/* <i className="fa-regular fa-face-smile text-5xl"></i>
-        <i className="fa-regular fa-face-smile-beam text-5xl"></i>
-        <i className="fa-regular fa-face-meh text-5xl"></i>
-        <i className="fa-regular fa-face-sad-cry text-5xl"></i>
-        <i className="fa-regular fa-face-frown text-5xl"></i> */}
+
           <span className="material-symbols-outlined text-5xl">mood</span>
           <span className="material-symbols-outlined text-5xl">
             sentiment_neutral
@@ -85,3 +84,13 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+          {/* <i className="fa-regular fa-face-smile text-5xl"></i>
+        <i className="fa-regular fa-face-smile-beam text-5xl"></i>
+        <i className="fa-regular fa-face-meh text-5xl"></i>
+        <i className="fa-regular fa-face-sad-cry text-5xl"></i>
+        <i className="fa-regular fa-face-frown text-5xl"></i> */}
+
+                {/* <span>January <span className="material-symbols-outlined">
+arrow_drop_down
+</span></span> */}
