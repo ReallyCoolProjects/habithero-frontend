@@ -16,7 +16,7 @@ function AddHabit() {
     label: "private",
   });
   const accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGUxZGIwbXowMDAwbWJjZ2lhdDJqc2RrIiwiZW1haWwiOiJwYWJsb0BtYWlsLmNvbSIsImlhdCI6MTY3NjI0NjcxMiwiZXhwIjoxNjc2MjQ3NjEyfQ.2Rn7U2Ihvlx8DXnp4ZlbCg-GlplilW5o1933VH0ZX1k";
+""
   const handletitleChange = (event: any) => {
     setTitle(event.target.value);
   };
