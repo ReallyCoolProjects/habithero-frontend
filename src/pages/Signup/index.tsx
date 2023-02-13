@@ -145,9 +145,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { FcGoogle } from "react-icons/fc";
-import { RiCodeView } from "react-icons/ri";
-import { FiGift } from "react-icons/fi";
-import { DiGitCommit } from "react-icons/di";
+
+import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
 
 import { usePassword } from "../../hooks/usePassword";
 import axios from "axios";
@@ -156,6 +155,7 @@ import { Link, useNavigate } from "react-router-dom";
 function SignUp() {
   const navigate = useNavigate();
   const accessToken = "";
+  const [hidden, setHidden] = useState(true);
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -206,7 +206,7 @@ function SignUp() {
             bio: bio,
           }
         );
-        localStorage.setItem('access_token', response.data.access_token)
+        localStorage.setItem("access_token", response.data.access_token);
       } catch (e) {
         console.log(e);
       }
@@ -214,8 +214,8 @@ function SignUp() {
   };
 
   return (
-    <div className="bg-black h-screen w-full max-lg:h-full py-10">
-      <div className="container xl:w-5/6 h-5/6 bg-white flex flex-row m-auto mt-10 rounded-md   max-md:w-5/6 lg:w-full h-5/6 max-lg:flex-col w-full h-max max-lg:items-center">
+    <div className="bg-black h-screen w-full max-lg:h-screen py-10">
+      <div className="container xl:w-3/6 h-5/6 bg-white flex flex-row m-auto mt-10 rounded-md lg:w-3/6  md:w-4/6 lg:w-full  max-lg:flex-col w-full  max-lg:items-center">
         <div className="login xl:flex xl:flex-col flex-1 w-2/6 items-center justify-center px-24 max-lg:px-18 max-lg:w-full max-md:px-5 ">
           <div className="google_auth  w-5/6 flex flex-row gap-x-2 items-center justify-center rounded-md border py-2 my-10 cursor-pointer max-lg:w-full">
             <FcGoogle size={"22px"} />
@@ -256,16 +256,31 @@ function SignUp() {
                 }}
               />
             </div>
-            <div className="password flex flex-col gap-y-3">
+            <div className="password relative flex flex-col gap-y-3">
               <label htmlFor="password">Password</label>
               <input
                 className="p-2 rounded-md border outline-none"
-                type="password"
+                type={hidden ? "password" : "text"}
                 name="password"
                 required
                 onChange={setPass}
                 placeholder="Password"
               />
+              {hidden ? (
+                <RxEyeClosed
+                  onClick={() => {
+                    setHidden(false);
+                  }}
+                  className="absolute top-12 right-4"
+                />
+              ) : (
+                <RxEyeOpen
+                  className="absolute top-12 right-4"
+                  onClick={() => {
+                    setHidden(true);
+                  }}
+                />
+              )}
               <ul className={`list-none`}>
                 {validLength ? (
                   <li className="text-xs line-through">

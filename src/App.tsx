@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import NotFound from "./pages/404/NotFound";
 import Dashboard from "./pages/Dashboard";
 import AddHabit from "./pages/Habits/AddHabit";
 import WithNav from "./pages/HeaderFlag/WithNav";
@@ -25,7 +26,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/add" element={<AddHabit />} />  
-            <Route path="/progress/:id" element={<Progress />} />  
+            <Route path="/progress/:id" element={<Progress />} />
+            <Route path="/404" element={<NotFound />} />  
           </Route>
         </Routes>
       </BrowserRouter>

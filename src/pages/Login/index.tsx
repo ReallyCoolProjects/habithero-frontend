@@ -52,20 +52,39 @@
 
 // export default Login;
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FcGoogle } from "react-icons/fc";
+import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
 import { RiCodeView } from "react-icons/ri";
 import { FiGift } from "react-icons/fi";
 import { DiGitCommit } from "react-icons/di";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
 
   const [email, setEmail] = useState("");
+  const [warning, setWarning] = useState(false);
+  const [errorType, setErrorType] = useState("");
+  const [hidden, setHidden] = useState(true);
 
+  const handleError = (errorCode: any) => {
+    if (errorCode === 403) {
+      setErrorType("Credentials incorrect");
+      setWarning(true);
+    } else if (errorCode === 500) {
+      setErrorType("Internal Server error");
+      setWarning(true);
+    } else if (errorCode === 404) {
+      setErrorType("Page not found");
+      navigate("/404");
+    }
+    setEmail("");
+    setPassword("");
+  };
   const handleEmailChange = (event: any) => {
     setEmail(event.target.value);
   };
@@ -76,28 +95,34 @@ function Login() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    console.log(email, password);
     if (email && password) {
-      try {
-        const response = await axios.post(
-          "http://localhost:5000/auth/local/signin",
-          {
-            email: email,
-            hashedPassword: password,
-          }
-        );
-        localStorage.setItem("access_token", response.data.access_token);
-        console.log(localStorage.getItem("access_token"));
-      } catch (e) {
-        console.log(e);
-      }
+      const response = await axios
+        .post("http://localhost:5000/auth/local/signin", {
+          email: email,
+          hashedPassword: password,
+        })
+        .then((res) => {
+          localStorage.setItem("access_token", res.data.access_token);
+        })
+        .catch((error) => {
+          handleError(error.response.status);
+        });
     }
   };
 
   return (
     <div className="bg-black h-screen w-screen pt-20 max-lg:h-screen">
-      <div className="container w-4/6 h-5/6 bg-white flex flex-row m-auto mt-10 rounded-md max-xl:w-5/6 h-5/6 max-lg:flex-col h-5/6">
+      <div className="container 2xl:w-2/6 xl:w-3/6 h-5/6 bg-white flex flex-row m-auto mt-10 rounded-md lg:w-3/6  md:w-4/6 lg:w-full  max-lg:flex-col w-full  max-lg:items-center">
         <div className="login flex flex-col flex-1 w-2/6 items-center justify-center px-24 max-lg:w-full h-full px-12 max-md: h-full px-3">
+          {warning ? (
+            <div className="warning">
+              <h1 className="text-red-600 text-center">
+                {errorType} <br /> try again
+              </h1>
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="google_auth  w-5/6 flex flex-row gap-x-2 items-center justify-center rounded-md border py-2 my-10 cursor-pointer max-md: w-full">
             <FcGoogle size={"22px"} />
             <p className="font-lg">sign in with google</p>
@@ -124,11 +149,11 @@ function Login() {
                 }}
               />
             </div>
-            <div className="password flex flex-col gap-y-3">
+            <div className="password relative flex flex-col gap-y-3">
               <label htmlFor="password">Password</label>
               <input
                 className="p-2 rounded-md border outline-none"
-                type="password"
+                type={hidden ? "password" : "text"}
                 name="password"
                 placeholder="Password"
                 required
@@ -137,6 +162,22 @@ function Login() {
                   handlePasswordChange(event);
                 }}
               />
+
+              {hidden ? (
+                <RxEyeClosed
+                  onClick={() => {
+                    setHidden(false);
+                  }}
+                  className="absolute top-12 right-4"
+                />
+              ) : (
+                <RxEyeOpen
+                  className="absolute top-12 right-4"
+                  onClick={() => {
+                    setHidden(true);
+                  }}
+                />
+              )}
             </div>
             <div className="flex flex-row items-center justify-between">
               <div className="flex flex-row gap-x-2">
