@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Progress from "./pages/progress/Progress";
+import Signup from "./pages/Signup";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route element={<WithoutNav />}>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
           </Route>
           <Route element={<WithNav />}>
             <Route path="/dashboard" element={<Dashboard />} />
