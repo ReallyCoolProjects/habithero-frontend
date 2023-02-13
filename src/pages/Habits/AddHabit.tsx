@@ -1,26 +1,22 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function AddHabit() {
-
-    const navigate = useNavigate();
-
   const [title, setTitle] = useState("");
   const [habitType, setHabitType] = useState("");
   const [note, setNote] = useState("");
   const [habitPeriod, setHabitPeriod] = useState({
-    value: 30,
-    label: "30 days",
+    value: 60,
+    label: "60 days",
   });
   const [habitStatue, setHabitStatue] = useState({
     value: "private",
     label: "private",
   });
   const accessToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGUxZGIwbXowMDAwbWJjZ2lhdDJqc2RrIiwiZW1haWwiOiJwYWJsb0BtYWlsLmNvbSIsImlhdCI6MTY3NjIxNzU4NSwiZXhwIjoxNjc2MjE4NDg1fQ.30Xj-EbU2ycKUlAS_taAmUSry9VpOO1GGPUcFCWiBoE";
-
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGUxZGIwbXowMDAwbWJjZ2lhdDJqc2RrIiwiZW1haWwiOiJwYWJsb0BtYWlsLmNvbSIsImlhdCI6MTY3NjI0NjcxMiwiZXhwIjoxNjc2MjQ3NjEyfQ.2Rn7U2Ihvlx8DXnp4ZlbCg-GlplilW5o1933VH0ZX1k";
   const handletitleChange = (event: any) => {
     setTitle(event.target.value);
   };
@@ -47,27 +43,33 @@ function AddHabit() {
     { value: 60, label: "60 days" },
     { value: 90, label: "90 days" },
   ];
-
+  const navigate = useNavigate();
   const handleSubmit = async (event: any) => {
-    const response = await axios.post(
-      "http://localhost:5000/habit/createHabit",
-      {
-        title: title,
-        description: note,
-        type: habitType,
-        statue: habitStatue.value,
-        period: habitPeriod.value,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
     event.preventDefault();
-    navigate("/dashboard");  //should fix this
+    console.log(habitPeriod)
+
+    //TODO: when user select other choice than 60 it will give hime undefined error
     
+    const response = await axios
+      .post(
+        "http://localhost:5000/habit/createHabit",
+        {
+          title: title,
+          description: note,
+          type: habitType,
+          statue: habitStatue.value,
+          period: habitPeriod.value
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        navigate("/dashboard");
+      });
   };
 
   return (
@@ -87,6 +89,9 @@ function AddHabit() {
         action=""
         onSubmit={() => {
           handleSubmit(event);
+          // if (location.state?.from) {
+          //   navigate(location.state.from);
+          // }
         }}
       >
         <div className="habit_title flex flex-col h-16 justify-evenly">
@@ -136,6 +141,7 @@ function AddHabit() {
             />
           </div>
         </div>
+
         <button
           className="mt-10 border border-black w-20 m-auto h-8 rounded-md text-white bg-black"
           type="submit"

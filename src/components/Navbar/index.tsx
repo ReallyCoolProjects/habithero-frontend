@@ -10,7 +10,7 @@ const Navbar = () => {
         <span>Dashboard</span> 
         </span>
       </Link>
-      <Link to="/dashboard">Progress</Link>
+      <Link to="/progress/1">Progress</Link>
       <Link to="/profile">
       <span className="flex flex-col justify-center items-center">
       <span className="material-symbols-outlined">

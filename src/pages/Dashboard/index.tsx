@@ -8,17 +8,16 @@ const Dashboard = () => {
   const [selected, setSelected] = useState(2);
   const moods = ["sad", "meh", "ok", "good", "awesome"];
   const accessToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGUxZGIwbXowMDAwbWJjZ2lhdDJqc2RrIiwiZW1haWwiOiJwYWJsb0BtYWlsLmNvbSIsImlhdCI6MTY3NjIxNzU4NSwiZXhwIjoxNjc2MjE4NDg1fQ.30Xj-EbU2ycKUlAS_taAmUSry9VpOO1GGPUcFCWiBoE";
-  //${i==0? "bg-black" : ""}
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbGUxZGIwbXowMDAwbWJjZ2lhdDJqc2RrIiwiZW1haWwiOiJwYWJsb0BtYWlsLmNvbSIsImlhdCI6MTY3NjI0NjcxMiwiZXhwIjoxNjc2MjQ3NjEyfQ.2Rn7U2Ihvlx8DXnp4ZlbCg-GlplilW5o1933VH0ZX1k"
   const greetingImg =
     "https://img.freepik.com/free-vector/learning-concept-illustration_114360-6186.jpg?w=740&t=st=1676190711~exp=1676191311~hmac=0c7c6943895dbddc633fb49a270fd4c8b6e9acc47949a564369a06b2a43caa2f";
 
-  const changeMood = async (event: any) => {
+  const changeMood = async (event: any, index: number) => {
     event.preventDefault();
     const response = await axios.patch(
-      "http://localhost:5000/mood/editMood",
+      "http://localhost:5000/mood",
       {
-        moodOfTheDay: moods[selected],
+        moodOfTheDay: moods[index],
       },
       {
         headers: {
@@ -29,9 +28,9 @@ const Dashboard = () => {
     );
   };
 
-  const handleClick = (event: any, index: any) => {
+  const handleClick = (event: any, index: number) => {
     setSelected(index);
-    changeMood(event);
+    changeMood(event, index);
   };
 
   const days = Array(6)
@@ -66,19 +65,13 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  // const habits = Array(6)
-  //   .fill(1)
-  //   .map((el, i) => {
-  //     return (
-  //       <tr className="flex capitalize justify-between text-xl border-b border-[#b7b8b7] p-2">
-  //         <span>go for a walk</span>
-  //         <div className="flex justify-between w-[5rem]">
-  //           <span className="material-symbols-outlined">done</span>
-  //           <span className="material-symbols-outlined">close</span>
-  //         </div>
-  //       </tr>
-  //     );
-  //   });
+  let currentMood = [
+    "sentiment_sad",
+    "sentiment_dissatisfied",
+    "sentiment_neutral",
+    "mood",
+    "sentiment_very_satisfied",
+  ].filter((item, index) => index == selected);
 
   const getRankOfHabit = async (badgeId: string) => {
     try {
@@ -96,16 +89,18 @@ const Dashboard = () => {
   const habits = habit.map((h: any, i: number) => {
     getRankOfHabit(h.badgeId);
     return (
-      <tr className="flex flex-row items-center capitalize justify-between text-xl border-b border-[#b7b8b7] p-2">
-        <span>{h.name}</span>
-        <div className="rank">
-          <p className="text-sm">{tempRank}</p>
-        </div>
-        <div className="flex flex-col justify-between w-[5rem]">
-          <span className="text-sm">day: {h.streak}</span>
-          <span className="text-sm">{h.type}</span>
-        </div>
-      </tr>
+      <Link to={`/progress/${h.id}`} state={{ data: h }}>
+        <tr className="flex flex-row items-center capitalize justify-between text-xl border-b border-[#b7b8b7] p-2 mb-10">
+          <span>{h.name}</span>
+          <div className="rank">
+            <p className="text-sm">{tempRank}</p>
+          </div>
+          <div className="flex flex-col justify-between w-[5rem]">
+            <span className="text-sm">day: {h.streak}</span>
+            <span className="text-sm">{h.type}</span>
+          </div>
+        </tr>
+      </Link>
     );
   });
 
@@ -115,15 +110,29 @@ const Dashboard = () => {
       id="dashboard"
     >
       {/**month selector */}
-      <div className="text-2xl flex justify-between">
+      <div className="text-2xl flex justify-between items-center">
         <select className="w-[1/2] h-14 ">
           <option selected value="a">
             January
           </option>
         </select>
-        <Link to="/add">
-          <span className="material-symbols-outlined text-3xl">add</span>
-        </Link>
+        <div className="options flex flex-row items-center gap-x-5">
+          {
+            <span
+              data-mood={moods[selected]}
+              className="material-symbols-outlined  text-5xl"
+              style={{
+                color: "green",
+                cursor: "pointer",
+              }}
+            >
+              {currentMood}
+            </span>
+          }
+          <Link to="/add">
+            <span className="material-symbols-outlined text-3xl">add</span>
+          </Link>
+        </div>
       </div>
 
       {/**calendar */}
@@ -165,7 +174,7 @@ const Dashboard = () => {
       </div>
 
       {/**habits table */}
-      <table className="borde">{habits}</table>
+      <table className="borde mb-50">{habits}</table>
     </section>
   );
 };

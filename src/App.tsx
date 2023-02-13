@@ -6,6 +6,8 @@ import WithNav from "./pages/HeaderFlag/WithNav";
 import WithoutNav from "./pages/HeaderFlag/WithoutNav";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import Progress from "./pages/progress/Progress";
+
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route element={<WithNav />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/add" element={<AddHabit />} />  
+            <Route path="/progress/:id" element={<Progress />} />  
           </Route>
         </Routes>
       </BrowserRouter>
