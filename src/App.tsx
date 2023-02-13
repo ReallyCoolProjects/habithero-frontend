@@ -5,6 +5,7 @@ import AddHabit from "./pages/Habits/AddHabit";
 import WithNav from "./pages/HeaderFlag/WithNav";
 import WithoutNav from "./pages/HeaderFlag/WithoutNav";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Progress from "./pages/progress/Progress";
 
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route element={<WithoutNav />}>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
           </Route>
           <Route element={<WithNav />}>
             <Route path="/dashboard" element={<Dashboard />} />
