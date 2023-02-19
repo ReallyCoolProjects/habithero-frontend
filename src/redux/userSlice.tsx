@@ -7,14 +7,14 @@ export const userSlice = createSlice({
         email: ""
     },
 	reducers: {
-		addUserEmail: (state:any, action:PayloadAction<string>) => {
-            state.email = action.payload;
+		addUserDetails: (state:any, action:PayloadAction<any>) => {
+            state = action.payload;
 		},
 
 	},
 });
 
 
-export const { addUserEmail } = userSlice.actions;
+export const { addUserDetails } = userSlice.actions;
 
 export default userSlice.reducer;

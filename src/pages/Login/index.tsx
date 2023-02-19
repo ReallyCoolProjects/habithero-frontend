@@ -8,7 +8,7 @@ import { DiGitCommit } from "react-icons/di";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from '../../hooks' // adding hooks for redux
-import { addUserEmail } from "../../redux/userSlice";
+import { addUserDetails } from "../../redux/userSlice";
 function Login() {
   const count = useAppSelector((state) => console.log(state.user)); // getting the state from the store
   const dispatch = useAppDispatch()
@@ -45,9 +45,7 @@ function Login() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    dispatch(
-      addUserEmail("email.com")
-    )
+
   
 
     if (email && password) {
@@ -58,6 +56,11 @@ function Login() {
         })
         .then((res) => {
           localStorage.setItem("access_token", res.data.access_token);
+          dispatch(
+            addUserDetails({
+              email : email,
+            })
+          )
         })
         .catch((error) => {
           handleError(error.response.status);
